@@ -24,9 +24,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 export class ProgramasService {
   
-  // Helper genérico para chamadas fetch
   private async fetchAPI<T>(endpoint: string, options?: RequestInit): Promise<T> {
-    // Verifica se a URL da API foi definida
     if (!API_URL) {
       console.error("NEXT_PUBLIC_API_URL não está definida no .env.local");
       throw new Error("Configuração de API ausente");
@@ -38,7 +36,6 @@ export class ProgramasService {
         'Content-Type': 'application/json',
         ...options?.headers,
       },
-      // Importante para garantir que o Next.js não cacheie dados velhos em dev
       cache: 'no-store' 
     });
 
@@ -56,7 +53,6 @@ export class ProgramasService {
         inicio: dto.periodoInicio,
         fim: dto.periodoFim
       },
-      // Cast de tipos (string -> Union Type)
       area: dto.area as any, 
       modalidade: dto.modalidade as any,
       nivel: dto.nivel as any,
