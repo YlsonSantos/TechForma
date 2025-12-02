@@ -45,7 +45,6 @@ export class ProgramasService {
 
     return res.json();
   }
-
   private mapProgramaToDomain(dto: ProgramaDTO): Programa {
     return {
       ...dto,
@@ -53,8 +52,11 @@ export class ProgramasService {
         inicio: dto.periodoInicio,
         fim: dto.periodoFim
       },
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       area: dto.area as any, 
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       modalidade: dto.modalidade as any,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       nivel: dto.nivel as any,
     };
   }
@@ -108,7 +110,7 @@ export class ProgramasService {
   async buscarInstituicao(id: string): Promise<Instituicao | null> {
     try {
       return await this.fetchAPI<Instituicao>(`/instituicoes/${id}`);
-    } catch (error) {
+    } catch {
       return null;
     }
   }
